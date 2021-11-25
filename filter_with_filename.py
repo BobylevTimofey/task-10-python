@@ -14,7 +14,7 @@ def apply_filter():
             paint_cell(data_img, x, y, mosaic_size, count_gradations)
 
     res = Image.fromarray(data_img)
-    res.save('res.jpg')
+    res.save('result_filter_with_filename.jpg')
 
 
 def find_average_brightness_cell(arr, px_width, px_height, mosaic_size):
