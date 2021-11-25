@@ -3,6 +3,10 @@ import numpy as np
 
 
 def apply_filter():
+    """
+    Принимает вводимые параметры, применяет фильтр и возвращает измененное фильтром изображение
+    :return: измененное фильтом изображение
+    """
     path_img = input("Введите путь к фото, которое хотите преобразовать:")
     img = Image.open(path_img)
     output_name = input("Введите название фото - результата:")
@@ -21,10 +25,31 @@ def apply_filter():
 
 
 def find_average_brightness_cell(arr, px_width, px_height, mosaic_size):
+    """
+    Находит среднюю ярскость пикселей
+    :param arr: массив с пикселями
+    :param px_width: позияия по ширине
+    :param px_height: позиция по высоте
+    :param mosaic_size: размер мозайки
+    :return: среднюю яркость пикселей в мозайке
+    >>> find_average_brightness_cell(np.array([[[1,1,1],[1,1,1]],[[1,1,1],[1,1,1]]]),0,0,2)
+    1.0
+    >>> find_average_brightness_cell(np.array([[[1,2,3],[1,2,3]],[[1,2,3],[1,2,3]]]),0,0,2)
+    1.0
+    """
     return np.average(arr[px_width:px_width + mosaic_size, px_height: px_height + mosaic_size])
 
 
 def paint_cell(arr, px_width, px_height, mosaic_size, count_gradations):
+    """
+    Перекрашивает пиксели
+    :param arr: массив с пикселями
+    :param px_width: позияия по ширине
+    :param px_height: позиция по высоте
+    :param mosaic_size: размер мозайки
+    :param count_gradations: количество градаций серого
+    :return: перекрашенные пиксели в мозайке
+    """
     average_brightness = find_average_brightness_cell(arr, px_width, px_height, mosaic_size)
     gradations = 255 // count_gradations
     px_brightness = average_brightness // gradations * gradations
