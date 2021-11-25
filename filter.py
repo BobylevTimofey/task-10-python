@@ -29,3 +29,7 @@ def paint_cell(arr, px_width, px_height, mosaic_size, count_gradations):
     gradations = 255 // count_gradations
     px_brightness = average_brightness // gradations * gradations
     arr[px_width:px_width + mosaic_size, px_height:px_height + mosaic_size, ][:] = px_brightness
+
+
+if __name__ == "__main__":
+    apply_filter()
